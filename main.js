@@ -25,13 +25,14 @@ const getDeals = async () => {
             for (entry of entries) {
                 const thread_id = entry.getAttribute("data-thread-id")
                 const title = entry.querySelector(".topic_title_link").innerText;
+                const deal_url = entry.querySelector(".topic_title_link").getAttribute("href");
                 const post_time = entry.querySelector(".first-post-time").innerText;
                 const description_list = entry.querySelector(".post_voting");
                 let votes = NaN;
                 if (description_list) {
                     votes = Number(description_list.getAttribute("data-total"));
                 }
-                const deal = { thread_id, title, votes, post_time };
+                const deal = { thread_id, title, votes, post_time, deal_url };
 
                 function filter(deal) {
                     if (deal.votes != NaN && deal.votes > 10) {
